@@ -1,0 +1,10 @@
+*.log
+*.sql
+*.sqlite
+*.pid
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+vendor
+Gemfile.lock
