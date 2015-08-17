@@ -10,8 +10,6 @@ module Echo
 
     set :env_filters, %w(
       GATEWAY_INTERFACE
-      HTTP_ACCEPT
-      HTTP_USER_AGENT
       HTTP_VERSION
       PATH_INFO
       QUERY_STRING
