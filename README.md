@@ -4,20 +4,19 @@ Maybe you're writing a client for a web service and you want to test some new ca
 
 ### Usage: server-side
 
-Echo is a very simple Sinatra 1.4 application. It expects to be run via
-Puma, but any generic Rack application server will do. It has been tested with
+Echo is a very simple [Sinatra](http://www.sinatrarb.com) 1.4 application. It expects to be run via
+[Puma](https://github.com/puma/puma), but any generic Rack application server will do. It has been tested with:
 
-  - Passenger: pretty fast.
-  - Thin: kinda slow.
-  - Unicorn: it's fine.
-  - Puma: Worked best with JRuby.
+  - [Passenger](https://www.phusionpassenger.com): pretty fast.
+  - [Thin](https://github.com/macournoyer/thin): kinda slow for this application.
+  - [Unicorn](https://bogomips.org/unicorn/): it's fine.
+  - [Puma](https://github.com/puma/puma): Worked best with [JRuby](http://jruby.org).
 
-Each of these app servers has been namedspaced into their own group, so install it without
-the ones you don't want to use. Echo's dependencies are installed just like any other 
-garden-variety Rack application: with Bundler.
+Echo's dependencies are installed just like any other garden-variety Rack application: with Bundler.
+For ease of deployment or execution, Puma also comes with a basic Procfile. You can run this anywhere you want using [Forego](ddollar/forego: Foreman in Go) or even a low-end tier on [Heroku](https://www.heroku.com).
 
 ```
-mckern@flexo echo (git:1.0.1) $ bundle install --path vendor/gems --without thin passenger unicorn
+mckern@flexo echo (git:1.0.1) $ bundle install --path vendor/gems
 Resolving dependencies...
 Using backports 3.6.8
 Using multi_json 1.10.1
