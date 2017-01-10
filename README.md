@@ -1,13 +1,50 @@
 ## Echo: everything you wanted to know about your HTTP request but didn't want to install a browser plugin to ask
 
-Maybe you're writing a client for a web service and you want to test some new calls. Maybe you're writing a web service that talks to another web service. Maybe you just want to know
+Maybe you're writing a client for a web service and you want to test some new calls. Maybe you're writing a web service that talks to another web service. Maybe you **just want to know**.
+
+### Usage: server-side
+
+Echo is a very simple Sinatra 1.4 application. It expects to be run via
+Puma, but any generic Rack application server will do. It has been tested with
+
+  - Passenger: pretty fast.
+  - Thin: kinda slow.
+  - Unicorn: it's fine.
+  - Puma: Worked best with JRuby.
+
+Each of these app servers has been namedspaced into their own group, so install it without
+the ones you don't want to use. Echo's dependencies are installed just like any other 
+garden-variety Rack application: with Bundler.
+
+```
+mckern@flexo echo (git:1.0.1) $ bundle install --path vendor/gems --without thin passenger unicorn
+Resolving dependencies...
+Using backports 3.6.8
+Using multi_json 1.10.1
+Using puma 3.6.2
+Using rack 1.6.5
+Using tilt 2.0.5
+Using bundler 1.13.7
+Using rack-protection 1.5.3
+Using rack-test 0.6.3
+Using sinatra 1.4.7
+Using sinatra-contrib 1.4.7
+Bundle complete! 3 Gemfile dependencies, 10 gems now installed.
+Bundled gems are installed into vendor/gems.
+mckern@flexo echo (git:1.0.1) $ 
+```
+
+### Usage: client-side
 
 ```bash
 # Use curl to send a GET request to a generic example API endpoint
-curl -H "Macguffin-Token: <token value>" "http://127.0.0.1:3000/example/endpoint"
+mckern@flexo ~ $ curl -H "Macguffin-Token: deadcafebeefbabe" "http://127.0.0.1:3000/example/endpoint"
 ```
 
-```
+And get back a valid, relatively easy-to-follow JSON hash with all the pertinent details
+of your dummy request:
+
+```json
 {
   "content_length": null,
   "cookies": {
@@ -29,7 +66,7 @@ curl -H "Macguffin-Token: <token value>" "http://127.0.0.1:3000/example/endpoint
   "query_string": "",
   "referer": null,
   "request_headers": {
-    "macguffin_token": "<token value>"
+    "macguffin_token": "deadcafebeefbabe"
   },
   "request_method": "GET",
   "scheme": "http",
@@ -38,3 +75,19 @@ curl -H "Macguffin-Token: <token value>" "http://127.0.0.1:3000/example/endpoint
   "user_agent": "curl/7.37.1"
 }
 ```
+
+### Support & contribution?
+
+In the spirit of Jordan Sissel (a hero to admins and operations people everywhere), if Echo is not helping you debug weirdo random HTTP requests from your weirdo random clients, then there is a bug in Echo. Please open an issue or submit a pull request if something doesn't work.
+
+## License
+
+Echo is licensed under the MIT License.
+
+> In computing, turning the obvious into the useful is a 
+> living definition of the word 'frustration'. 
+>    &#8213; <cite>Alan Perlis</cite>
+
+## Maintainer
+
+Ryan McKern &lt;ryan@orangefort.com&gt;
