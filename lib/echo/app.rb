@@ -1,5 +1,5 @@
+require 'json'
 require 'sinatra/base'
-require 'multi_json'
 require 'echo'
 
 module Echo
@@ -77,8 +77,10 @@ module Echo
       enable :dump_errors, :raise_errors
     end
 
-    # Define a default route and echo out
-    # headers and ENV variables for anything requested
+    # Define a default route and echo out headers and ENV
+    # variables for anything requested. This is wrapped up
+    # in a Lambda so that it can be executed on demand by
+    # any of the metaprogramatically generated HTTP method hooks.
     parrot = lambda do
       dump = Hash[
         settings.rack_methods.map do |method|
@@ -117,7 +119,7 @@ module Echo
       # Sinatra::JSON helper because we want the line-breaks that come with
       # :pretty => true.
       content_type 'application/json;charset=utf-8'
-      body MultiJson.dump(dump, pretty: true)
+      body JSON.pretty_generate(dump)
     end
 
     %w(
