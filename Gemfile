@@ -5,10 +5,7 @@ source 'https://rubygems.org/'
 gem 'sinatra', '~> 1.4'
 gem 'sinatra-contrib', '~> 1.4'
 
-group :puma do
-  gem 'puma'
-end
-
-group :test do
-  gem 'rspec'
-end
+gem 'thin', group: :thin, require: false
+gem 'unicorn', group: :unicorn, require: false
+gem 'puma', group: :puma, require: false
+gem 'passenger', group: :passenger, require: false
