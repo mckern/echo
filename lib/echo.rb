@@ -1,7 +1,3 @@
 module Echo
-  VERSION = '1.0.0'
-
-  class << self
-  end
+  VERSION = '1.0.1'.freeze
 end
-
