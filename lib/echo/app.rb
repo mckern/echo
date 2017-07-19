@@ -8,7 +8,7 @@ module Echo
     # Global configuration
     disable :sessions
 
-    set :env_filters, %w(
+    set :env_filters, %w[
       GATEWAY_INTERFACE
       HTTP_VERSION
       PATH_INFO
@@ -40,14 +40,14 @@ module Echo
       rack.url_scheme
       rack.version
       sinatra.route
-    )
+    ]
 
-    set :params_filters, %w(
+    set :params_filters, %w[
       splat
       captures
-    )
+    ]
 
-    set :rack_methods, %w(
+    set :rack_methods, %w[
       content_length
       cookies
       host
@@ -63,7 +63,7 @@ module Echo
       script_name
       url
       user_agent
-    )
+    ]
 
     configure :production do
       use Rack::Deflater
@@ -122,12 +122,12 @@ module Echo
       body JSON.pretty_generate(dump)
     end
 
-    %w(
+    %w[
       get
       post
       put
       delete
-    ).each do |method|
+    ].each do |method|
       send method, '/*', &parrot
     end
   end

@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # This will be used for defining a lot of things
 # deeper down in the Sinatra and Echo namespaces
 APP_ROOT = File.expand_path(File.dirname(__FILE__))
