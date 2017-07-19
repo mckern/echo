@@ -13,7 +13,7 @@ Echo is a very simple [Sinatra](http://www.sinatrarb.com) 1.4 application. It ex
   - [Puma](https://github.com/puma/puma): Worked best with [JRuby](http://jruby.org).
 
 Echo's dependencies are installed just like any other garden-variety Rack application: with Bundler.
-For ease of deployment or execution, Puma also comes with a basic Procfile. You can run this anywhere you want using [Forego](ddollar/forego: Foreman in Go) or even a low-end tier on [Heroku](https://www.heroku.com).
+For ease of deployment or execution, Puma also comes with a basic Procfile. You can run this anywhere you want using [Forego](ddollar/forego) or even a low-end tier on [Heroku](https://www.heroku.com).
 
 ```
 mckern@flexo echo (git:1.0.1) $ bundle install --path vendor/gems
