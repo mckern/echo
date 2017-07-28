@@ -15,3 +15,6 @@ matrix:
   exclude:
     - rvm: 2.4
       env: "CHECK='rake rubocop'"
+  allow_failures:
+    - env: "CHECK='rake rubocop'"
+  fast_finish: true
