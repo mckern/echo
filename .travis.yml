@@ -1,0 +1,17 @@
+language: ruby
+sudo: false
+script: "bundle exec ${CHECK}"
+notifications:
+  email: false
+rvm:
+  - 2.3
+  - 2.4
+
+env:
+  - "CHECK='rake test:spec'"
+  - "CHECK='rake rubocop'"
+
+matrix:
+  exclude:
+    - rvm: 2.4
+      env: "CHECK='rake rubocop'"
