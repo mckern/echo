@@ -12,8 +12,9 @@ gem 'sinatra-contrib', '~> 1.4'
 gem 'puma', group: :puma, require: false
 
 group(:development, :test) do
+  gem 'minitest', require: false
+  gem 'minitest-reporters', require: false
   gem 'rake', require: false
-  gem 'rspec', '~> 3.0', require: false
   gem 'rubocop', '~> 0.47', require: false
   gem 'simplecov', require: false
   gem 'webmock', require: false

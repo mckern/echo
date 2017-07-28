@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-describe 'Echo::App' do
+require 'spec_helper'
+
+describe 'Echo::App' do # rubocop:disable Metrics/BlockLength
   include Rack::Test::Methods
 
   def app
@@ -13,28 +15,26 @@ describe 'Echo::App' do
   it 'accepts and echoes an HTTP POST request' do
     post '/', 'msg' => 'Hello world!'
 
-    expect(form_hash)
-      .to include('msg' => 'Hello world!')
+    form_hash.must_equal('msg' => 'Hello world!')
   end
 
   it 'filters dangerous values from the response' do
     get '/'
 
-    expect(body['request_headers'].keys)
-      .not_to include app.settings.env_filters
+    body['request_headers'].keys
+      .wont_include app.settings.env_filters
 
-    expect(body['params'])
-      .not_to include app.settings.params_filters
+    body['params']
+      .wont_include app.settings.params_filters
   end
 
   it 'returns a valid JSON response' do
     get '/'
 
-    expect(last_response.header['Content-Type'].split(';'))
-      .to include 'application/json'
+    last_response.header['Content-Type'].split(';')
+      .must_include 'application/json'
 
-    expect(JSON.parse(last_response.body))
-      .to be_truthy
+    assert(JSON.parse(last_response.body))
   end
 
   it 'returns a different response for a POST than a GET' do
@@ -48,7 +48,6 @@ describe 'Echo::App' do
       JSON.parse(last_response.body)
     end
 
-    expect(get_response.call != post_response.call)
-      .to be true
+    get_response.call.wont_equal(post_response.call)
   end
 end

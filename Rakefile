@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require 'rspec/core/rake_task'
+require 'rake/testtask'
 require 'rubocop/rake_task'
 
 desc 'Test Echo'
 namespace :test do
-  require 'rspec/core/rake_task'
-  RSpec::Core::RakeTask.new do |task|
-    task.rspec_opts = %(--format documentation --color --require spec_helper)
+  Rake::TestTask.new(:spec) do |test|
+    test.libs << 'spec'
+    test.libs << 'lib'
+    test.pattern = 'spec/**/*_spec.rb'
+    test.verbose = false
+    test.warning = false
   end
 
   desc 'Test Echo and calculate test coverage'
