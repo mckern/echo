@@ -2,6 +2,8 @@
 
 Maybe you're writing a client for a web service and you want to test some new calls. Maybe you're writing a web service that talks to another web service. Maybe you **just want to know**.
 
+[![Build Status](https://travis-ci.org/mckern/echo.svg?branch=master)](https://travis-ci.org/mckern/echo)
+
 ### Usage: server-side
 
 Echo is a very simple [Sinatra](http://www.sinatrarb.com) 1.4 application. It expects to be run via
