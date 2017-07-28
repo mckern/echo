@@ -22,7 +22,7 @@ describe 'Echo::App' do # rubocop:disable Metrics/BlockLength
     get '/'
 
     body['request_headers'].keys
-      .wont_include app.settings.env_filters
+                           .wont_include app.settings.env_filters
 
     body['params']
       .wont_include app.settings.params_filters
@@ -32,7 +32,7 @@ describe 'Echo::App' do # rubocop:disable Metrics/BlockLength
     get '/'
 
     last_response.header['Content-Type'].split(';')
-      .must_include 'application/json'
+                 .must_include 'application/json'
 
     assert(JSON.parse(last_response.body))
   end
