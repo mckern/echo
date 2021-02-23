@@ -84,26 +84,24 @@ module Echo
     # in a Lambda so that it can be executed on demand by
     # any of the metaprogramatically generated HTTP method hooks.
     parrot = lambda do
-      dump = Hash[
-        settings.rack_methods.map do |method|
-          value = request.send(method)
+      dump = settings.rack_methods.map do |method|
+        value = request.send(method)
 
-          # Thanks to the magic of pass-by-reference, when dump[:env] is created from
-          # rack.env, any alterations to dump[:env] (like dropping keys) meander their way
-          # down into rack.env. Eventually you hit a value like rack.after_reply, and everything
-          # goes sideways in a big, big way. Highly undesirable.
-          value = begin
-            value.dup
-          rescue TypeError
-            value
-          end
-
-          # Return the method name and the value
-          # as an Array, to facilitate squashing this down
-          # into a readable Hash.
-          [method.to_sym, value]
+        # Thanks to the magic of pass-by-reference, when dump[:env] is created from
+        # rack.env, any alterations to dump[:env] (like dropping keys) meander their way
+        # down into rack.env. Eventually you hit a value like rack.after_reply, and everything
+        # goes sideways in a big, big way. Highly undesirable.
+        value = begin
+          value.dup
+        rescue TypeError
+          value
         end
-      ]
+
+        # Return the method name and the value
+        # as an Array, to facilitate squashing this down
+        # into a readable Hash.
+        [method.to_sym, value]
+      end.to_h
 
       # Prune values from dump[:env] that are rack-specific or sensitive
       dump[:request_headers] = env.reject { |key, _| settings.env_filters.include? key }
@@ -112,7 +110,7 @@ module Echo
       dump[:params] = params.reject { |key, _| settings.params_filters.include? key }
 
       # Sort the dump for presentation
-      dump = Hash[dump.sort_by { |key, _| key }]
+      dump = dump.sort_by { |key, _| key }.to_h
 
       # Use a custom status code if one of the parameters is "status="
       status params['status'] if params['status']
