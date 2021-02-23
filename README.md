@@ -32,7 +32,7 @@ Using sinatra 1.4.7
 Using sinatra-contrib 1.4.7
 Bundle complete! 3 Gemfile dependencies, 10 gems now installed.
 Bundled gems are installed into vendor/gems.
-mckern@flexo echo (git:1.0.1) $ 
+mckern@flexo echo (git:1.0.1) $
 ```
 
 ### Usage: client-side
@@ -85,8 +85,8 @@ In the spirit of Jordan Sissel (a hero to admins and operations people everywher
 
 Echo is licensed under the MIT License.
 
-> In computing, turning the obvious into the useful is a 
-> living definition of the word 'frustration'. 
+> In computing, turning the obvious into the useful is a
+> living definition of the word 'frustration'.
 >    &#8213; <cite>Alan Perlis</cite>
 
 ## Maintainer
