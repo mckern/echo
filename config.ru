@@ -2,7 +2,7 @@
 
 # This will be used for defining a lot of things
 # deeper down in the Sinatra and Echo namespaces
-APP_ROOT = File.expand_path(File.dirname(__FILE__))
+APP_ROOT = __dir__
 $LOAD_PATH.unshift(File.join(APP_ROOT, 'lib')).uniq!
 
 # Load Bundler, and bundle up them gems
